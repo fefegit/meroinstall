@@ -6,6 +6,7 @@ COIN_DAEMON='/usr/local/bin/merod'
 COIN_CLI='/usr/local/bin/mero-cli'
 COIN_REPO='https://github.com/merocoin/mero/releases/download/v1.0.0/linux_x64.tar.gz'
 COIN_NAME='MeroCoin'
+COIN_ZIP='linux_x64.tar.gz'
 COIN_PORT=14550
 
 NODEIP=$(curl -s4 api.ipify.org)
@@ -41,20 +42,15 @@ function compile_node() {
   TMP_FOLDER=$(mktemp -d)
   cd $TMP_FOLDER
   wget --progress=bar:force $COIN_REPO 2>&1 | progressfilt
-  compile_error
-  COIN_ZIP=$(echo $COIN_REPO | awk -F'/' '{print $NF}')
-  COIN_VER=$(echo $COIN_ZIP | awk -F'/' '{print $NF}' | sed -n 's/.*\([0-9]\.[0-9]\.[0-9]\).*/\1/p')
-  COIN_DIR=$(echo ${COIN_NAME,,}-$COIN_VER)
-  tar xvzf $COIN_ZIP --strip=2 ${COIN_DIR}/bin/${COIN_NAME,,}d ${COIN_DIR}/bin/${COIN_NAME,,}-cli>/dev/null 2>&1
-  compile_error
+  tar xvzf $COIN_ZIP
   rm -f $COIN_ZIP >/dev/null 2>&1
   cp mero* /usr/local/bin
   compile_error
-  strip $COIN_DAEMON $COIN_CLI
   cd -
   rm -rf $TMP_FOLDER >/dev/null 2>&1
   clear
 }
+
 
 function configure_systemd() {
   cat << EOF > /etc/systemd/system/$COIN_NAME.service
