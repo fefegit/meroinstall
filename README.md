@@ -4,7 +4,7 @@ Shell script to install a [MeroCoin Masternode](http://mero.network/) on a Linux
 ***
 ## Installation:
 ```
-git clone https://github.com/merocoin/meroinstall.git
+git clone https://github.com/fefegit/meroinstall.git
 cd meroinstall
 bash mero-install.sh
 ```
