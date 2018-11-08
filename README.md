@@ -1,5 +1,5 @@
 # MeroCoin
-Shell script to install a [MeroCoin Masternode](http://mero.network/) on a Linux server running Ubuntu 14.04 or 16.04. Use it on your own risk.
+Shell script to install a [MeroCoin Masternode] on a Linux server running Ubuntu 14.04 or 16.04. Use it on your own risk.
 
 ***
 ## Installation:
